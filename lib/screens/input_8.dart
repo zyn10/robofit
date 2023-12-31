@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import 'package:robofit/screens/input_9.dart';
 
 import '../utils/colors.dart';
 
@@ -52,12 +54,12 @@ class _GetTimesState extends State<GetTimes> {
           children: [
             Container(
               height: 0.5.h,
-              width: 55.w,
+              width: 65.w,
               color: const Color.fromARGB(255, 10, 239, 193),
             ),
             Container(
               height: 0.5.h,
-              width: 15.w,
+              width: 5.w,
               color: MyColors.backgroundColor,
             ),
           ],
@@ -71,7 +73,8 @@ class _GetTimesState extends State<GetTimes> {
               height: 4.h,
             ),
             const Text(
-              "Choose your level",
+              "How often do\nyou workout?",
+              textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 28,
                 fontWeight: FontWeight.bold,
@@ -95,6 +98,20 @@ class _GetTimesState extends State<GetTimes> {
           horizontal: 5.w,
         ),
         child: InkWell(
+          onTap: isNextButtonEnabled
+              ? () => Get.to(
+                    GetName(
+                      gender: widget.gender,
+                      height: widget.height,
+                      weight: widget.weight,
+                      age: widget.age,
+                      goal: widget.goal,
+                      location: widget.location,
+                      level: widget.level,
+                      selectedTime: selectedTime,
+                    ),
+                  )
+              : null,
           child: Container(
             width: 90.w,
             height: 6.h,

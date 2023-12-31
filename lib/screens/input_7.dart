@@ -52,12 +52,12 @@ class _GetExperienceState extends State<GetExperience> {
           children: [
             Container(
               height: 0.5.h,
-              width: 50.w,
+              width: 55.w,
               color: const Color.fromARGB(255, 10, 239, 193),
             ),
             Container(
               height: 0.5.h,
-              width: 20.w,
+              width: 15.w,
               color: MyColors.backgroundColor,
             ),
           ],
