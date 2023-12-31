@@ -1,20 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import 'package:robofit/screens/input_2.dart';
-import 'package:robofit/utils/colors.dart';
+import 'package:robofit/screens/input_7.dart';
 
-class InputDetails extends StatefulWidget {
-  const InputDetails({Key? key}) : super(key: key);
+import '../utils/colors.dart';
+
+class GetLocation extends StatefulWidget {
+  final String gender;
+  final double height;
+  final double weight;
+  final double age;
+  final String goal;
+
+  const GetLocation(
+      {required this.gender,
+      required this.height,
+      required this.weight,
+      required this.age,
+      required this.goal,
+      super.key});
 
   @override
-  State<InputDetails> createState() => _InputDetailsState();
+  State<GetLocation> createState() => _GetLocationState();
 }
 
-class _InputDetailsState extends State<InputDetails> {
-  String selectedGender = '';
+class _GetLocationState extends State<GetLocation> {
+  String selectedLocation = '';
 
-  bool get isNextButtonEnabled => selectedGender.isNotEmpty;
+  bool get isNextButtonEnabled => selectedLocation.isNotEmpty;
 
   @override
   Widget build(BuildContext context) {
@@ -37,12 +50,12 @@ class _InputDetailsState extends State<InputDetails> {
           children: [
             Container(
               height: 0.5.h,
-              width: 10.w,
+              width: 50.w,
               color: const Color.fromARGB(255, 10, 239, 193),
             ),
             Container(
               height: 0.5.h,
-              width: 60.w,
+              width: 20.w,
               color: MyColors.backgroundColor,
             ),
           ],
@@ -52,19 +65,25 @@ class _InputDetailsState extends State<InputDetails> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            SizedBox(
+              height: 4.h,
+            ),
             const Text(
-              "Gender",
+              "Choose your \ntraining location",
               style: TextStyle(
-                fontSize: 36,
+                fontSize: 28,
                 fontWeight: FontWeight.bold,
                 color: MyColors.textColor,
               ),
+              textAlign: TextAlign.center,
             ),
             SizedBox(
-              height: 2.h,
+              height: 3.h,
             ),
-            buildGenderContainer(Icons.female, "Female"),
-            buildGenderContainer(Icons.male, "Male"),
+            buildGenderContainer(Icons.home, "Home"),
+            buildGenderContainer(Icons.fitness_center, "Gym"),
+            buildGenderContainer(Icons.park, "Park"),
+            buildGenderContainer(Icons.category, "Other"),
           ],
         ),
       ),
@@ -76,9 +95,16 @@ class _InputDetailsState extends State<InputDetails> {
         ),
         child: InkWell(
           onTap: isNextButtonEnabled
-              ? () => Get.to(GetHeight(
-                    gender: selectedGender,
-                  ))
+              ? () => Get.to(
+                    GetExperience(
+                      gender: widget.gender,
+                      height: widget.height,
+                      weight: widget.weight,
+                      age: widget.age,
+                      goal: widget.goal,
+                      location: selectedLocation,
+                    ),
+                  )
               : null,
           child: Container(
             width: 90.w,
@@ -106,11 +132,11 @@ class _InputDetailsState extends State<InputDetails> {
   }
 
   Widget buildGenderContainer(IconData icon, String text) {
-    bool isSelected = selectedGender == text;
+    bool isSelected = selectedLocation == text;
     return GestureDetector(
       onTap: () {
         setState(() {
-          selectedGender = text;
+          selectedLocation = text;
         });
       },
       child: Container(
@@ -149,10 +175,10 @@ class _InputDetailsState extends State<InputDetails> {
             SizedBox(width: 1.w),
             CustomRadio(
               value: text,
-              groupValue: selectedGender,
+              groupValue: selectedLocation,
               onChanged: (value) {
                 setState(() {
-                  selectedGender = value.toString();
+                  selectedLocation = value.toString();
                 });
               },
               selectedColor: MyColors.newColor,

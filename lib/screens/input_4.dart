@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import 'package:robofit/screens/input_5.dart';
 import 'package:robofit/utils/colors.dart';
 
 class GetAge extends StatefulWidget {
-  final double height; // Add the height parameter here
+  final String gender;
+  final double height;
   final double weight;
-  const GetAge({required this.height, required this.weight, Key? key})
+  const GetAge(
+      {required this.gender,
+      required this.height,
+      required this.weight,
+      Key? key})
       : super(key: key);
 
   @override
@@ -133,7 +140,11 @@ class _GetAgeState extends State<GetAge> {
         ),
         child: InkWell(
           onTap: () {
-            // Get.to();
+            Get.to(GetGoals(
+                gender: widget.gender,
+                height: widget.height,
+                weight: widget.weight,
+                age: age));
           },
           child: Container(
             width: 90.w,

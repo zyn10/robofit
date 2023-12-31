@@ -1,20 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import 'package:robofit/screens/input_2.dart';
+import 'package:robofit/screens/input_6.dart';
 import 'package:robofit/utils/colors.dart';
 
-class InputDetails extends StatefulWidget {
-  const InputDetails({Key? key}) : super(key: key);
+class GetGoals extends StatefulWidget {
+  final String gender;
+  final double height;
+  final double weight;
+  final double age;
+  const GetGoals(
+      {required this.gender,
+      required this.height,
+      required this.weight,
+      required this.age,
+      Key? key})
+      : super(key: key);
 
   @override
-  State<InputDetails> createState() => _InputDetailsState();
+  State<GetGoals> createState() => _GetGoalsState();
 }
 
-class _InputDetailsState extends State<InputDetails> {
-  String selectedGender = '';
+class _GetGoalsState extends State<GetGoals> {
+  String selectedGoal = '';
 
-  bool get isNextButtonEnabled => selectedGender.isNotEmpty;
+  bool get isNextButtonEnabled => selectedGoal.isNotEmpty;
 
   @override
   Widget build(BuildContext context) {
@@ -37,12 +47,12 @@ class _InputDetailsState extends State<InputDetails> {
           children: [
             Container(
               height: 0.5.h,
-              width: 10.w,
+              width: 45.w,
               color: const Color.fromARGB(255, 10, 239, 193),
             ),
             Container(
               height: 0.5.h,
-              width: 60.w,
+              width: 25.w,
               color: MyColors.backgroundColor,
             ),
           ],
@@ -52,19 +62,25 @@ class _InputDetailsState extends State<InputDetails> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            SizedBox(
+              height: 4.h,
+            ),
             const Text(
-              "Gender",
+              "What's your goal?",
               style: TextStyle(
-                fontSize: 36,
+                fontSize: 28,
                 fontWeight: FontWeight.bold,
                 color: MyColors.textColor,
               ),
             ),
             SizedBox(
-              height: 2.h,
+              height: 3.h,
             ),
-            buildGenderContainer(Icons.female, "Female"),
-            buildGenderContainer(Icons.male, "Male"),
+            buildGenderContainer(Icons.local_fire_department, "Loose weight"),
+            buildGenderContainer(Icons.fitness_center, "Build muscle"),
+            buildGenderContainer(Icons.spa, "Reduce stress"),
+            buildGenderContainer(Icons.directions_run, "Stay toned"),
+            buildGenderContainer(Icons.directions_walk, "Be more active"),
           ],
         ),
       ),
@@ -76,9 +92,15 @@ class _InputDetailsState extends State<InputDetails> {
         ),
         child: InkWell(
           onTap: isNextButtonEnabled
-              ? () => Get.to(GetHeight(
-                    gender: selectedGender,
-                  ))
+              ? () => Get.to(
+                    GetLocation(
+                      gender: widget.gender,
+                      height: widget.height,
+                      weight: widget.weight,
+                      age: widget.age,
+                      goal: selectedGoal,
+                    ),
+                  )
               : null,
           child: Container(
             width: 90.w,
@@ -106,11 +128,11 @@ class _InputDetailsState extends State<InputDetails> {
   }
 
   Widget buildGenderContainer(IconData icon, String text) {
-    bool isSelected = selectedGender == text;
+    bool isSelected = selectedGoal == text;
     return GestureDetector(
       onTap: () {
         setState(() {
-          selectedGender = text;
+          selectedGoal = text;
         });
       },
       child: Container(
@@ -149,10 +171,10 @@ class _InputDetailsState extends State<InputDetails> {
             SizedBox(width: 1.w),
             CustomRadio(
               value: text,
-              groupValue: selectedGender,
+              groupValue: selectedGoal,
               onChanged: (value) {
                 setState(() {
-                  selectedGender = value.toString();
+                  selectedGoal = value.toString();
                 });
               },
               selectedColor: MyColors.newColor,

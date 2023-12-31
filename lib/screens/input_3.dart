@@ -5,9 +5,10 @@ import 'package:robofit/screens/input_4.dart';
 import 'package:robofit/utils/colors.dart';
 
 class GetWeight extends StatefulWidget {
+  final String gender;
   final double height;
-
-  const GetWeight({required this.height, Key? key}) : super(key: key);
+  const GetWeight({required this.gender, required this.height, Key? key})
+      : super(key: key);
   @override
   State<GetWeight> createState() => _GetWeightState();
 }
@@ -134,6 +135,7 @@ class _GetWeightState extends State<GetWeight> {
         child: InkWell(
           onTap: () {
             Get.to(GetAge(
+              gender: widget.gender,
               height: widget.height,
               weight: weight,
             ));

@@ -1,20 +1,35 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import 'package:robofit/screens/input_2.dart';
-import 'package:robofit/utils/colors.dart';
 
-class InputDetails extends StatefulWidget {
-  const InputDetails({Key? key}) : super(key: key);
+import '../utils/colors.dart';
+
+class GetTimes extends StatefulWidget {
+  final String gender;
+  final double height;
+  final double weight;
+  final double age;
+  final String goal;
+  final String location;
+  final String level;
+
+  const GetTimes(
+      {required this.gender,
+      required this.height,
+      required this.weight,
+      required this.age,
+      required this.goal,
+      required this.location,
+      required this.level,
+      super.key});
 
   @override
-  State<InputDetails> createState() => _InputDetailsState();
+  State<GetTimes> createState() => _GetTimesState();
 }
 
-class _InputDetailsState extends State<InputDetails> {
-  String selectedGender = '';
+class _GetTimesState extends State<GetTimes> {
+  String selectedTime = '';
 
-  bool get isNextButtonEnabled => selectedGender.isNotEmpty;
+  bool get isNextButtonEnabled => selectedTime.isNotEmpty;
 
   @override
   Widget build(BuildContext context) {
@@ -37,12 +52,12 @@ class _InputDetailsState extends State<InputDetails> {
           children: [
             Container(
               height: 0.5.h,
-              width: 10.w,
+              width: 55.w,
               color: const Color.fromARGB(255, 10, 239, 193),
             ),
             Container(
               height: 0.5.h,
-              width: 60.w,
+              width: 15.w,
               color: MyColors.backgroundColor,
             ),
           ],
@@ -52,19 +67,24 @@ class _InputDetailsState extends State<InputDetails> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            SizedBox(
+              height: 4.h,
+            ),
             const Text(
-              "Gender",
+              "Choose your level",
               style: TextStyle(
-                fontSize: 36,
+                fontSize: 28,
                 fontWeight: FontWeight.bold,
                 color: MyColors.textColor,
               ),
             ),
             SizedBox(
-              height: 2.h,
+              height: 3.h,
             ),
-            buildGenderContainer(Icons.female, "Female"),
-            buildGenderContainer(Icons.male, "Male"),
+            buildGenderContainer("1 day a week"),
+            buildGenderContainer("2 days a week"),
+            buildGenderContainer("3 days a week"),
+            buildGenderContainer("4 days a week"),
           ],
         ),
       ),
@@ -75,11 +95,6 @@ class _InputDetailsState extends State<InputDetails> {
           horizontal: 5.w,
         ),
         child: InkWell(
-          onTap: isNextButtonEnabled
-              ? () => Get.to(GetHeight(
-                    gender: selectedGender,
-                  ))
-              : null,
           child: Container(
             width: 90.w,
             height: 6.h,
@@ -105,12 +120,12 @@ class _InputDetailsState extends State<InputDetails> {
     );
   }
 
-  Widget buildGenderContainer(IconData icon, String text) {
-    bool isSelected = selectedGender == text;
+  Widget buildGenderContainer(String text) {
+    bool isSelected = selectedTime == text;
     return GestureDetector(
       onTap: () {
         setState(() {
-          selectedGender = text;
+          selectedTime = text;
         });
       },
       child: Container(
@@ -130,10 +145,6 @@ class _InputDetailsState extends State<InputDetails> {
           children: [
             Row(
               children: [
-                Icon(
-                  icon,
-                  color: Colors.grey,
-                ),
                 SizedBox(
                   width: 2.w,
                 ),
@@ -149,10 +160,10 @@ class _InputDetailsState extends State<InputDetails> {
             SizedBox(width: 1.w),
             CustomRadio(
               value: text,
-              groupValue: selectedGender,
+              groupValue: selectedTime,
               onChanged: (value) {
                 setState(() {
-                  selectedGender = value.toString();
+                  selectedTime = value.toString();
                 });
               },
               selectedColor: MyColors.newColor,
