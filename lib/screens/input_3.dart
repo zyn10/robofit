@@ -1,3 +1,4 @@
+import 'package:animated_weight_picker/animated_weight_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
@@ -15,6 +16,15 @@ class GetWeight extends StatefulWidget {
 
 class _GetWeightState extends State<GetWeight> {
   double weight = 72.0;
+  final double min = 0;
+  final double max = 10;
+  String selectedValue = '';
+
+  @override
+  void initState() {
+    selectedValue = min.toString();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -77,51 +87,68 @@ class _GetWeightState extends State<GetWeight> {
               ],
             ),
             SizedBox(
-              height: 5.h,
+              height: 10.h,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                ElevatedButton(
-                  onPressed: () {
+            // Row(
+            //   mainAxisAlignment: MainAxisAlignment.center,
+            //   children: [
+            //     ElevatedButton(
+            //       onPressed: () {
+            //         setState(() {
+            //           weight--;
+            //         });
+            //       },
+            //       style: ElevatedButton.styleFrom(
+            //         backgroundColor: MyColors.newColor,
+            //         shape: const CircleBorder(), // Make the button circular
+            //       ),
+            //       child: const Icon(
+            //         Icons.remove,
+            //         color: MyColors.textColor,
+            //       ),
+            //     ),
+            //     SizedBox(width: 20.w),
+            //     Text(
+            //       '${weight.toInt()}',
+            //       style: const TextStyle(
+            //         fontSize: 48,
+            //         fontWeight: FontWeight.w600,
+            //       ),
+            //     ),
+            //     SizedBox(width: 20.w),
+            //     ElevatedButton(
+            //       onPressed: () {
+            //         setState(() {
+            //           weight++;
+            //         });
+            //       },
+            //       style: ElevatedButton.styleFrom(
+            //         backgroundColor: MyColors.newColor,
+            //         shape: const CircleBorder(),
+            //       ),
+            //       child: const Icon(
+            //         Icons.add,
+            //         color: MyColors.textColor,
+            //       ),
+            //     ),
+            //   ],
+            // ),
+            Center(
+              child: SizedBox(
+                width: 90.w,
+                child: AnimatedWeightPicker(
+                  min: 0,
+                  max: 200,
+                  dialColor: MyColors.newColor,
+                  selectedValueColor: MyColors.newColor,
+                  suffixTextColor: MyColors.newColor,
+                  onChange: (newValue) {
                     setState(() {
-                      weight--;
+                      selectedValue = newValue;
                     });
                   },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: MyColors.newColor,
-                    shape: const CircleBorder(), // Make the button circular
-                  ),
-                  child: const Icon(
-                    Icons.remove,
-                    color: MyColors.textColor,
-                  ),
                 ),
-                SizedBox(width: 20.w),
-                Text(
-                  '${weight.toInt()}',
-                  style: const TextStyle(
-                    fontSize: 48,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-                SizedBox(width: 20.w),
-                ElevatedButton(
-                  onPressed: () {
-                    setState(() {
-                      weight++;
-                    });
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: MyColors.newColor,
-                    shape: const CircleBorder(),
-                  ),
-                  child: const Icon(
-                    Icons.add,
-                    color: MyColors.textColor,
-                  ),
-                ),
-              ],
+              ),
             ),
           ],
         ),
@@ -137,7 +164,7 @@ class _GetWeightState extends State<GetWeight> {
             Get.to(GetAge(
               gender: widget.gender,
               height: widget.height,
-              weight: weight,
+              weight: double.parse(selectedValue),
             ));
           },
           child: Container(

@@ -148,10 +148,9 @@ class _GetNameState extends State<GetName> {
                       weight: widget.weight,
                       age: widget.age,
                       goal: widget.goal,
-                      bodyPart: widget.location,
+                      trainingLocation: widget.location,
                       experience: widget.level,
                       workoutDays: widget.selectedTime,
-                      equipment: "dumbels",
                     ),
                   )
               : null,

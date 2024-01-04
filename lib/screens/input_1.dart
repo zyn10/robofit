@@ -53,15 +53,15 @@ class _InputDetailsState extends State<InputDetails> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const Text(
-              "Gender",
+              "Which one are you?",
               style: TextStyle(
-                fontSize: 36,
+                fontSize: 28,
                 fontWeight: FontWeight.bold,
                 color: MyColors.textColor,
               ),
             ),
             SizedBox(
-              height: 2.h,
+              height: 3.h,
             ),
             buildGenderContainer(Icons.female, "Female"),
             buildGenderContainer(Icons.male, "Male"),

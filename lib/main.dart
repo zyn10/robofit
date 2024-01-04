@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import 'package:robofit/out/output.dart';
 import 'package:robofit/screens/splash.dart';
 
 void main() {
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             primarySwatch: Colors.blue,
           ),
-          home: const SplashScreen(),
+          home: const Outputscreen(),
         );
       },
       maxTabletWidth: 900,

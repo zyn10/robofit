@@ -83,7 +83,6 @@ class _GetLocationState extends State<GetLocation> {
             buildGenderContainer(Icons.home, "Home"),
             buildGenderContainer(Icons.fitness_center, "Gym"),
             buildGenderContainer(Icons.park, "Park"),
-            buildGenderContainer(Icons.category, "Other"),
           ],
         ),
       ),

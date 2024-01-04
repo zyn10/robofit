@@ -38,6 +38,7 @@ dependencies:
   get: ^4.6.6
   responsive_sizer: ^3.2.0
   http: ^1.1.0
+  animated_weight_picker: ^1.0.3
 
 dev_dependencies:
   flutter_test:
