@@ -3,23 +3,26 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:robofit/utils/colors.dart';
 
 class Outputscreen extends StatefulWidget {
-  const Outputscreen({super.key});
+  final String generatedPlan;
+
+  const Outputscreen({super.key, required this.generatedPlan});
 
   @override
   State<Outputscreen> createState() => _OutputscreenState();
 }
 
 class _OutputscreenState extends State<Outputscreen> {
-  bool isChecked = false;
   @override
   Widget build(BuildContext context) {
+    List<Map<String, dynamic>> workoutData =
+        parseGeneratedPlan(widget.generatedPlan);
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: SizedBox(
         height: 100.h,
         child: Stack(
           children: [
-            //----->Top logo
             Positioned(
               top: 0.h,
               left: 0,
@@ -47,7 +50,6 @@ class _OutputscreenState extends State<Outputscreen> {
                 ),
               ),
             ),
-            //----->Main Coloumn
             Positioned(
               left: 0,
               right: 0,
@@ -63,31 +65,17 @@ class _OutputscreenState extends State<Outputscreen> {
                         height: 25.h,
                       ),
                     ),
-                    const Text(
-                      "Day 1",
-                      style: TextStyle(
-                        fontWeight: FontWeight.w500,
-                        color: MyColors.accentColor,
-                        fontSize: 18,
+                    SingleChildScrollView(
+                      child: Column(
+                        children: workoutData.map((dayData) {
+                          return dayCard(
+                            day: dayData['day'],
+                            heading: dayData['heading'],
+                            steps: dayData['steps'],
+                          );
+                        }).toList(),
                       ),
                     ),
-                    SizedBox(
-                      height: 1.h,
-                    ),
-                    const Text(
-                      "Full Body Workout with Dumbbells",
-                      style: TextStyle(
-                        fontWeight: FontWeight.w700,
-                        color: Color(0xFF1B1B1B),
-                        fontSize: 18,
-                      ),
-                    ),
-                    SizedBox(
-                      height: 2.h,
-                    ),
-                    rowCard(),
-                    SizedBox(height: 1.h),
-                    const Divider(),
                   ],
                 ),
               ),
@@ -98,18 +86,66 @@ class _OutputscreenState extends State<Outputscreen> {
     );
   }
 
-  Widget rowCard() {
-    int number;
+  Widget dayCard({
+    required String day,
+    required String heading,
+    required List<String> steps,
+  }) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          "DAY $day",
+          style: const TextStyle(
+            fontWeight: FontWeight.w700,
+            color: Color.fromARGB(255, 10, 183, 148),
+            fontSize: 18,
+          ),
+        ),
+        SizedBox(
+          height: 1.h,
+        ),
+        Text(
+          heading,
+          style: const TextStyle(
+            fontWeight: FontWeight.w700,
+            color: Color(0xFF1B1B1B),
+            fontSize: 18,
+          ),
+        ),
+        SizedBox(
+          height: 2.h,
+        ),
+        // Generate rows dynamically based on the steps
+        for (int i = 0; i < steps.length; i++)
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              rowCard(
+                number_: (i + 1).toString(),
+                description_: steps[i],
+              ),
+              SizedBox(height: 1.h),
+              if (i < steps.length - 1) const Divider(),
+            ],
+          ),
+      ],
+    );
+  }
 
+  Widget rowCard({
+    required String number_,
+    required String description_,
+  }) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         CircleAvatar(
-          backgroundColor: MyColors.primaryColor,
+          backgroundColor: MyColors.newColor,
           radius: 3.w,
-          child: const Text(
-            "1",
-            style: TextStyle(
+          child: Text(
+            number_,
+            style: const TextStyle(
               color: MyColors.textColor,
               fontSize: 16,
               fontWeight: FontWeight.bold,
@@ -119,12 +155,12 @@ class _OutputscreenState extends State<Outputscreen> {
         SizedBox(
           width: 4.w,
         ),
-        const Expanded(
+        Expanded(
           child: Wrap(
             children: [
               Text(
-                "5-10 minutes of light cardio (such as jogging or jumping jacks) to get your heart rate up and warm up your muscles.",
-                style: TextStyle(
+                description_,
+                style: const TextStyle(
                   fontWeight: FontWeight.w400,
                   color: Color(0xFF1B1B1B),
                   fontSize: 14,
@@ -135,5 +171,32 @@ class _OutputscreenState extends State<Outputscreen> {
         ),
       ],
     );
+  }
+
+  List<Map<String, dynamic>> parseGeneratedPlan(String generatedPlan) {
+    List<Map<String, dynamic>> workoutData = [];
+
+    List<String> days = generatedPlan.split('Day ');
+
+    for (int i = 1; i < days.length; i++) {
+      List<String> lines = days[i].split('\n');
+      String day = lines[0].trim();
+      String heading = lines[1].trim();
+
+      List<String> steps = [];
+      for (int j = 2; j < lines.length; j++) {
+        if (lines[j].trim().isNotEmpty) {
+          steps.add(lines[j].trim());
+        }
+      }
+
+      workoutData.add({
+        'day': day,
+        'heading': heading,
+        'steps': steps,
+      });
+    }
+
+    return workoutData;
   }
 }

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:responsive_sizer/responsive_sizer.dart';
+import 'package:robofit/out/output.dart';
 import 'package:robofit/utils/colors.dart';
 
 class GenerateFitnessPlan extends StatelessWidget {
@@ -133,47 +134,13 @@ class GenerateFitnessPlan extends StatelessWidget {
     );
   }
 
+  void navigateToOutputScreen(String generatedPlan) {
+    Get.to(() => Outputscreen(generatedPlan: generatedPlan));
+  }
+
   Widget buildWorkoutList(String generatedPlan) {
-    // Split the plan by days
-    List<String> days = generatedPlan.split('Day ');
-    print('Generated Plan: $generatedPlan');
-
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: days.map((day) {
-        // Split each day's plan into exercises
-        List<String> exercises = day.split('- ');
-
-        // Remove the first element (day header)
-        exercises.removeAt(0);
-
-        return Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'Day $day',
-              style: const TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.normal,
-                  color: Colors.black),
-            ),
-            SizedBox(height: 1.h),
-            ListView.builder(
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              itemCount: exercises.length,
-              itemBuilder: (context, index) {
-                return Text(
-                  exercises[index].trim(),
-                  style: const TextStyle(fontSize: 16),
-                );
-              },
-            ),
-            SizedBox(height: 2.h),
-          ],
-        );
-      }).toList(),
-    );
+    navigateToOutputScreen(generatedPlan);
+    return SizedBox.shrink(); // Return an empty widget or null if necessary
   }
 
   Future<String> generateFitnessPlan() async {
@@ -205,7 +172,14 @@ class GenerateFitnessPlan extends StatelessWidget {
           7- My Experience with fitness i.e beginner, intermediate, advance etc
           8- How often I can work out i.e times a week.
 
-          Generate a plan tailored to achieve the specified goals, considering the given conditions. Please ensure the plan is designed for the specified number of days.
+          Generate a plan tailored to achieve the specified goals, considering the given conditions. Please ensure the plan is designed for the specified number of days in the following structure
+          Day Number
+          Heading of Workoutofthe day like "Upper Body Strength"
+          Steps of the day
+          number : heading : time : discription
+          eg
+          1: Warmup: 5 mins : perform jogging in a place and jumping jacks
+          2: Dumbbell Bench Press: 20 mins : perform 3 sets of 12 reps
           """
         },
         {'role': 'user', 'content': userMessage},
