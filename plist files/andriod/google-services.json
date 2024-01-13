@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "670378662565",
+    "project_id": "robofit-28dac",
+    "storage_bucket": "robofit-28dac.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:670378662565:android:c1a32e158be70956bb4b4c",
+        "android_client_info": {
+          "package_name": "com.example.robofit"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD67ciC-DnPvYfqc6ZRvXQxLP9GmQh5eqk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
