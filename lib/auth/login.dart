@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:robofit/auth/signup.dart';
+import 'package:robofit/splash.dart';
 // import 'package:robofit/screens/input_1.dart';
 import 'package:robofit/utils/colors.dart';
 import 'package:robofit/utils/utils.dart';
@@ -30,9 +31,10 @@ class _OurLoginState extends State<OurLogin> {
     String res = await AuthMethods().loginUser(
         email: _emailController.text, password: _passwordController.text);
     if (res == "success") {
+      showSnackBar(context, res);
       setState(() {});
       // ignore: use_build_context_synchronously
-      // Get.to(const InputDetails());
+      Get.to(const SplashScreen());
     } else {
       setState(() {});
       // ignore: use_build_context_synchronously
