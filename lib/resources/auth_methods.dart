@@ -1,8 +1,8 @@
-import 'dart:typed_data';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:robofit/model/user.dart' as model;
-import 'package:robofit/provider/storage_methods.dart';
+import 'package:robofit/resources/storage_methods.dart';
 
 class AuthMethods {
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -90,7 +90,9 @@ class AuthMethods {
       }
     } catch (e) {
       // Print the error details for debugging
-      print("Error during login: $e");
+      if (kDebugMode) {
+        print("Error during login: $e");
+      }
 
       // Print specific information based on the type of error
       if (e is FirebaseAuthException) {
@@ -105,7 +107,9 @@ class AuthMethods {
 
       // Print additional information from the error, if available
       if (e is FirebaseAuthException && e.message != null) {
-        print("Firebase Auth Error Message: ${e.message}");
+        if (kDebugMode) {
+          print("Firebase Auth Error Message: ${e.message}");
+        }
       }
     }
     return res;
