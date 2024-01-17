@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:robofit/home/home.dart';
@@ -28,12 +29,12 @@ class MyApp extends StatelessWidget {
               create: (_) => UserProvider(),
             ),
           ],
-          child: MaterialApp(
+          child: GetMaterialApp(
             debugShowCheckedModeBanner: false,
             title: 'Robofit',
-            theme: ThemeData.dark().copyWith(
-              scaffoldBackgroundColor: MyColors.newColor,
-            ),
+            // theme: ThemeData.dark().copyWith(
+            //   scaffoldBackgroundColor: MyColors.newColor,
+            // ),
             home: StreamBuilder(
               stream: FirebaseAuth.instance.authStateChanges(),
               builder: (context, snapshot) {

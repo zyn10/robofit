@@ -3,6 +3,7 @@ import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:robofit/utils/colors.dart';
 
 // for picking up image from gallery
 pickImage(ImageSource source) async {
@@ -32,9 +33,12 @@ showSnackBar(BuildContext context, String text) {
       content: Text(
         text,
         textAlign: TextAlign.center,
-        style: const TextStyle(fontSize: 20.0),
+        style: const TextStyle(
+          fontSize: 18.0,
+          color: Colors.black,
+        ),
       ),
-      backgroundColor: Colors.orange,
+      backgroundColor: MyColors.newColor,
     ),
   );
 }

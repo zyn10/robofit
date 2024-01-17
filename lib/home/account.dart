@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:robofit/provider/user_provider.dart';
 import 'package:robofit/utils/colors.dart';
 
@@ -17,21 +18,29 @@ class _AccountState extends State<Account> {
     final UserProvider userProvider = Provider.of<UserProvider>(context);
     userProvider.getUser?.uid;
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 203, 203, 203),
       appBar: AppBar(
-        backgroundColor: MyColors.backgroundColor,
+        backgroundColor: MyColors.newColor,
         elevation: 0,
-        title: const Text("Profile"),
+        automaticallyImplyLeading: false,
+        title: const Text(
+          "Profile",
+          style: TextStyle(
+            color: Colors.black,
+          ),
+        ),
       ),
       body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(top: 70.0),
-              child: Center(
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 4.w),
+          child: Column(
+            children: [
+              SizedBox(
+                height: 4.h,
+              ),
+              Center(
                 child: SizedBox(
-                  height: 115,
-                  width: 115,
+                  height: 12.h,
+                  width: 30.w,
                   child: Stack(
                     fit: StackFit.expand,
                     clipBehavior: Clip.none,
@@ -67,162 +76,163 @@ class _AccountState extends State<Account> {
                   ),
                 ),
               ),
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-              child: TextButton(
-                style: TextButton.styleFrom(
-                  padding: const EdgeInsets.all(20),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15)),
-                  backgroundColor: MyColors.backgroundColor,
-                ),
-                onPressed: () {},
+              SizedBox(
+                height: 4.h,
+              ),
+              Container(
+                height: 7.h,
+                decoration: BoxDecoration(
+                    color: MyColors.newColor,
+                    borderRadius: BorderRadius.circular(16)),
                 child: Row(
                   children: [
-                    const Icon(
-                      Icons.waving_hand,
-                      color: MyColors.backgroundColor,
-                    ),
-                    Expanded(
-                      child: Center(
-                        child: Text(
-                          "${userProvider.getUser!.fullname} ",
-                          style: const TextStyle(
-                            color: MyColors.backgroundColor,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-              child: TextButton(
-                style: TextButton.styleFrom(
-                  padding: const EdgeInsets.all(20),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15)),
-                  backgroundColor: MyColors.backgroundColor,
-                ),
-                onPressed: () {},
-                child: Row(
-                  children: [
-                    const Icon(
-                      Icons.person,
-                      color: MyColors.backgroundColor,
-                    ),
-                    Expanded(
-                      child: Center(
-                        child: Text(
-                          "${userProvider.getUser!.fullname} ",
-                          style: const TextStyle(
-                            color: MyColors.backgroundColor,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-              child: TextButton(
-                style: TextButton.styleFrom(
-                  padding: const EdgeInsets.all(20),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15)),
-                  backgroundColor: MyColors.backgroundColor,
-                ),
-                onPressed: () {},
-                child: Row(
-                  children: [
-                    const Icon(
-                      Icons.email,
-                      color: MyColors.backgroundColor,
-                    ),
-                    Expanded(
-                      child: Center(
-                        child: Text(
-                          "${userProvider.getUser!.email} ",
-                          style: const TextStyle(
-                            color: MyColors.backgroundColor,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-              child: TextButton(
-                style: TextButton.styleFrom(
-                  padding: const EdgeInsets.all(20),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15)),
-                  backgroundColor: MyColors.backgroundColor,
-                ),
-                onPressed: () {},
-                child: const Row(
-                  children: [
+                    SizedBox(width: 5.w),
                     Icon(
-                      Icons.grade_rounded,
-                      color: MyColors.backgroundColor,
+                      Icons.person,
+                      size: 2.5.h,
                     ),
-                    Expanded(
-                      child: Center(
-                        child: Text(
-                          " Posts",
-                          style: TextStyle(
-                            color: MyColors.backgroundColor,
-                          ),
-                        ),
-                      ),
-                    ),
+                    SizedBox(width: 3.w),
+                    text_widget("${userProvider.getUser!.fullname} ",
+                        fontSize: 16.sp, fontWeight: FontWeight.w300)
                   ],
                 ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-              child: TextButton(
-                style: TextButton.styleFrom(
-                  padding: const EdgeInsets.all(20),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                  backgroundColor: Colors.orange,
+              SizedBox(
+                height: 2.h,
+              ),
+              Container(
+                height: 7.h,
+                decoration: BoxDecoration(
+                    color: const Color(0xffF1F1F1),
+                    borderRadius: BorderRadius.circular(16)),
+                child: Row(
+                  children: [
+                    SizedBox(width: 5.w),
+                    Icon(
+                      Icons.email,
+                      size: 2.5.h,
+                    ),
+                    SizedBox(width: 3.w),
+                    text_widget("${userProvider.getUser!.email} ",
+                        fontSize: 16.sp, fontWeight: FontWeight.w300)
+                  ],
                 ),
-                onPressed: () {
+              ),
+              SizedBox(
+                height: 2.h,
+              ),
+              Container(
+                height: 7.h,
+                decoration: BoxDecoration(
+                    color: const Color(0xffF1F1F1),
+                    borderRadius: BorderRadius.circular(16)),
+                child: Row(
+                  children: [
+                    SizedBox(width: 5.w),
+                    Icon(
+                      Icons.cake,
+                      size: 2.5.h,
+                    ),
+                    SizedBox(width: 3.w),
+                    text_widget("${userProvider.getUser!.age} years ",
+                        fontSize: 16.sp, fontWeight: FontWeight.w300)
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 2.h,
+              ),
+              Container(
+                height: 7.h,
+                decoration: BoxDecoration(
+                    color: const Color(0xffF1F1F1),
+                    borderRadius: BorderRadius.circular(16)),
+                child: Row(
+                  children: [
+                    SizedBox(width: 5.w),
+                    Icon(
+                      Icons.fitness_center,
+                      size: 2.5.h,
+                    ),
+                    SizedBox(width: 3.w),
+                    text_widget("${userProvider.getUser!.weight} kg ",
+                        fontSize: 16.sp, fontWeight: FontWeight.w300)
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 2.h,
+              ),
+              Container(
+                height: 7.h,
+                decoration: BoxDecoration(
+                    color: const Color(0xffF1F1F1),
+                    borderRadius: BorderRadius.circular(16)),
+                child: Row(
+                  children: [
+                    SizedBox(width: 5.w),
+                    Icon(
+                      Icons.height,
+                      size: 2.5.h,
+                    ),
+                    SizedBox(width: 3.w),
+                    text_widget("${userProvider.getUser!.height} cm ",
+                        fontSize: 16.sp, fontWeight: FontWeight.w300)
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 4.h,
+              ),
+              InkWell(
+                onTap: () {
                   FirebaseAuth.instance.signOut();
                 },
-                child: const Row(
-                  children: [
-                    const SizedBox(width: 10),
-                    const Expanded(
-                      child: Center(
-                        child: Text(
-                          'Log Out',
-                          style: TextStyle(
-                            color: Colors.white,
-                          ),
+                child: Container(
+                  height: 7.h,
+                  decoration: BoxDecoration(
+                      color: MyColors.newColor,
+                      borderRadius: BorderRadius.circular(16)),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        "Log Out",
+                        style: TextStyle(
+                          fontSize: 16.sp,
+                          fontWeight: FontWeight.w600,
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
+      ),
+    );
+  }
+
+  Widget text_widget(String text,
+      {fontSize,
+      color,
+      fontWeight,
+      decoration,
+      textAlign,
+      letterSpacing,
+      maxline,
+      bool isShadow = false}) {
+    return Text(
+      text,
+      maxLines: maxline,
+      textAlign: textAlign,
+      style: TextStyle(
+        color: color ?? Colors.black,
+        fontSize: fontSize ?? 17.sp,
+        fontWeight: fontWeight ?? FontWeight.w500,
+        decoration: decoration,
+        letterSpacing: letterSpacing,
       ),
     );
   }
