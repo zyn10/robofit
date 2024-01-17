@@ -39,7 +39,7 @@ class _OurLoginState extends State<OurLogin> {
     } else {
       setState(() {});
       // ignore: use_build_context_synchronously
-      showSnackBar(context, res);
+      showSnackBar(context, "Wrong Credentials");
     }
   }
 
@@ -144,29 +144,29 @@ class _OurLoginState extends State<OurLogin> {
                 ),
                 obscureText: true,
               ),
-              SizedBox(
-                height: 2.h,
-              ),
-              InkWell(
-                onTap: () {
-                  Get.to(const ForgetPasswordScreen());
-                },
-                child: const Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Text(
-                      "Forget Password?",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Color.fromARGB(255, 0, 102, 255),
-                        decoration: TextDecoration.underline,
-                        fontSize: 14,
-                        fontWeight: FontWeight.w400,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+              // SizedBox(
+              //   height: 2.h,
+              // ),
+              // InkWell(
+              //   onTap: () {
+              //     Get.to(const ForgetPasswordScreen());
+              //   },
+              //   child: const Row(
+              //     mainAxisAlignment: MainAxisAlignment.end,
+              //     children: [
+              //       Text(
+              //         "Forget Password?",
+              //         textAlign: TextAlign.center,
+              //         style: TextStyle(
+              //           color: Color.fromARGB(255, 0, 102, 255),
+              //           decoration: TextDecoration.underline,
+              //           fontSize: 14,
+              //           fontWeight: FontWeight.w400,
+              //         ),
+              //       ),
+              //     ],
+              //   ),
+              // ),
               SizedBox(
                 height: 3.h,
               ),
