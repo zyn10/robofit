@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import 'package:robofit/auth/forget_password.dart';
 import 'package:robofit/auth/signup.dart';
 import 'package:robofit/home/home.dart';
 import 'package:robofit/utils/colors.dart';
@@ -143,34 +144,32 @@ class _OurLoginState extends State<OurLogin> {
                 ),
                 obscureText: true,
               ),
-
+              SizedBox(
+                height: 2.h,
+              ),
+              InkWell(
+                onTap: () {
+                  Get.to(const ForgetPasswordScreen());
+                },
+                child: const Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Text(
+                      "Forget Password?",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Color.fromARGB(255, 0, 102, 255),
+                        decoration: TextDecoration.underline,
+                        fontSize: 14,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
               SizedBox(
                 height: 3.h,
               ),
-              // InkWell(
-              //   onTap: () {
-              //     loginUserFun();
-              //   },
-              //   child: Container(
-              //     width: 90.w,
-              //     height: 6.h,
-              //     decoration: const BoxDecoration(
-              //       borderRadius: BorderRadius.all(Radius.circular(10)),
-              //       color: MyColors.newColor,
-              //     ),
-              //     child: const Center(
-              //       child: Text(
-              //         "Log In",
-              //         textAlign: TextAlign.center,
-              //         style: TextStyle(
-              //           color: Colors.black,
-              //           fontSize: 16,
-              //           fontWeight: FontWeight.w500,
-              //         ),
-              //       ),
-              //     ),
-              //   ),
-              // ),
               TextButton(
                 style: TextButton.styleFrom(
                   padding: const EdgeInsets.all(15),
