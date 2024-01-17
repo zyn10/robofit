@@ -5,8 +5,8 @@ import 'package:robofit/model/user.dart' as model;
 import 'package:robofit/resources/storage_methods.dart';
 
 class AuthMethods {
-  final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  final FirebaseAuth _auth = FirebaseAuth.instance;
 
   // get user details
   Future<model.User> getUserDetails() async {
@@ -14,7 +14,6 @@ class AuthMethods {
 
     DocumentSnapshot documentSnapshot =
         await _firestore.collection('users').doc(currentUser.uid).get();
-
     return model.User.fromSnap(documentSnapshot);
   }
 

@@ -1,5 +1,5 @@
 import 'package:robofit/home/account.dart';
-import 'package:robofit/home/home.dart';
+import 'package:robofit/screens/input_1.dart';
 
 const homeScreenItems = [
   // FeedScreen(),
@@ -9,7 +9,8 @@ const homeScreenItems = [
   // AlertScreen(),
   // Account(),
   // StackScreen(),
-  Home(),
+  InputDetails(),
+  Account(),
   Account(),
   Account(),
 ];

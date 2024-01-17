@@ -1,8 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:robofit/provider/json_details.dart';
-import 'package:robofit/resources/firestore_methods.dart';
 import 'package:robofit/utils/colors.dart';
 import 'package:robofit/utils/global_variables.dart';
 
@@ -15,11 +12,10 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   int _page = 0;
-  late PageController pageController; // for tabs animation
+  late PageController pageController;
 
   @override
   void initState() {
-    FireStoreMethods().getNameAndAddress();
     super.initState();
     pageController = PageController();
   }
@@ -43,7 +39,6 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    // Provider.of<UserDetailsProvider>(context).getData();
     return Scaffold(
       body: PageView(
         controller: pageController,

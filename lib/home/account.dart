@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:robofit/provider/user_provider.dart';
@@ -15,12 +16,19 @@ class _AccountState extends State<Account> {
   @override
   Widget build(BuildContext context) {
     final UserProvider userProvider = Provider.of<UserProvider>(context);
-    userProvider.getUser?.uid;
-
+    userProvider.getUser.uid;
+    if (kDebugMode) {
+      print('user uid is = $userProvider.getUser.uid');
+    }
     return Scaffold(
+      backgroundColor: MyColors.backgroundColor,
       appBar: AppBar(
+        backgroundColor: MyColors.backgroundColor,
         title: const Text("Profile"),
-        leading: const Icon(Icons.arrow_back),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () {},
+        ),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -37,7 +45,7 @@ class _AccountState extends State<Account> {
                     children: [
                       CircleAvatar(
                         backgroundImage: NetworkImage(
-                          userProvider.getUser!.photoUrl,
+                          userProvider.getUser.photoUrl,
                         ),
                       ),
                       Positioned(
@@ -88,7 +96,7 @@ class _AccountState extends State<Account> {
                     Expanded(
                       child: Center(
                         child: Text(
-                          "${userProvider.getUser!.fullname} ",
+                          "${userProvider.getUser.fullname} ",
                           style: const TextStyle(
                             color: MyColors.backgroundColor,
                           ),
@@ -118,7 +126,7 @@ class _AccountState extends State<Account> {
                     Expanded(
                       child: Center(
                         child: Text(
-                          "${userProvider.getUser!.fullname} ",
+                          "${userProvider.getUser.fullname} ",
                           style: const TextStyle(
                             color: MyColors.backgroundColor,
                           ),
@@ -148,7 +156,7 @@ class _AccountState extends State<Account> {
                     Expanded(
                       child: Center(
                         child: Text(
-                          "${userProvider.getUser!.email} ",
+                          "${userProvider.getUser.email} ",
                           style: const TextStyle(
                             color: MyColors.backgroundColor,
                           ),
