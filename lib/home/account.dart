@@ -1,5 +1,4 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:robofit/provider/user_provider.dart';
@@ -16,19 +15,13 @@ class _AccountState extends State<Account> {
   @override
   Widget build(BuildContext context) {
     final UserProvider userProvider = Provider.of<UserProvider>(context);
-    userProvider.getUser.uid;
-    if (kDebugMode) {
-      print('user uid is = $userProvider.getUser.uid');
-    }
+    userProvider.getUser?.uid;
     return Scaffold(
-      backgroundColor: MyColors.backgroundColor,
+      backgroundColor: const Color.fromARGB(255, 203, 203, 203),
       appBar: AppBar(
         backgroundColor: MyColors.backgroundColor,
+        elevation: 0,
         title: const Text("Profile"),
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () {},
-        ),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -45,7 +38,7 @@ class _AccountState extends State<Account> {
                     children: [
                       CircleAvatar(
                         backgroundImage: NetworkImage(
-                          userProvider.getUser.photoUrl,
+                          userProvider.getUser!.photoUrl,
                         ),
                       ),
                       Positioned(
@@ -58,14 +51,15 @@ class _AccountState extends State<Account> {
                             style: TextButton.styleFrom(
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(50),
-                                side: const BorderSide(color: Colors.orange),
+                                side:
+                                    const BorderSide(color: MyColors.newColor),
                               ),
                               //Color: Colors.white,
                               backgroundColor: Colors.white,
                             ),
                             onPressed: () {},
                             child: const Icon(
-                                color: Colors.orange, Icons.verified),
+                                color: MyColors.newColor, Icons.verified),
                           ),
                         ),
                       )
@@ -96,7 +90,7 @@ class _AccountState extends State<Account> {
                     Expanded(
                       child: Center(
                         child: Text(
-                          "${userProvider.getUser.fullname} ",
+                          "${userProvider.getUser!.fullname} ",
                           style: const TextStyle(
                             color: MyColors.backgroundColor,
                           ),
@@ -126,7 +120,7 @@ class _AccountState extends State<Account> {
                     Expanded(
                       child: Center(
                         child: Text(
-                          "${userProvider.getUser.fullname} ",
+                          "${userProvider.getUser!.fullname} ",
                           style: const TextStyle(
                             color: MyColors.backgroundColor,
                           ),
@@ -156,7 +150,7 @@ class _AccountState extends State<Account> {
                     Expanded(
                       child: Center(
                         child: Text(
-                          "${userProvider.getUser.email} ",
+                          "${userProvider.getUser!.email} ",
                           style: const TextStyle(
                             color: MyColors.backgroundColor,
                           ),
@@ -210,13 +204,8 @@ class _AccountState extends State<Account> {
                 onPressed: () {
                   FirebaseAuth.instance.signOut();
                 },
-                child: Row(
+                child: const Row(
                   children: [
-                    Image.asset(
-                      "assets/logout.png",
-                      color: MyColors.backgroundColor,
-                      width: 22,
-                    ),
                     const SizedBox(width: 10),
                     const Expanded(
                       child: Center(

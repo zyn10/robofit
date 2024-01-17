@@ -10,11 +10,23 @@ class AuthMethods {
 
   // get user details
   Future<model.User> getUserDetails() async {
-    User currentUser = _auth.currentUser!;
+    try {
+      User currentUser = _auth.currentUser!;
 
-    DocumentSnapshot documentSnapshot =
-        await _firestore.collection('users').doc(currentUser.uid).get();
-    return model.User.fromSnap(documentSnapshot);
+      DocumentSnapshot documentSnapshot =
+          await _firestore.collection('users').doc(currentUser.uid).get();
+
+      if (documentSnapshot.exists) {
+        return model.User.fromSnap(documentSnapshot);
+      } else {
+        // Handle the case where the user document doesn't exist
+        throw Exception("User document does not exist");
+      }
+    } catch (e) {
+      // Handle any other errors that might occur during the operation
+      print("Error getting user details: $e");
+      throw Exception("Error getting user details");
+    }
   }
 
 //sign up user

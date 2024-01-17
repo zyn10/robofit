@@ -1,7 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:robofit/utils/colors.dart';
 import 'package:robofit/utils/global_variables.dart';
+
+import '../provider/user_provider.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -18,6 +21,12 @@ class _HomeState extends State<Home> {
   void initState() {
     super.initState();
     pageController = PageController();
+    addData();
+  }
+
+  addData() async {
+    UserProvider userProvider = Provider.of(context, listen: false);
+    await userProvider.refreshUser();
   }
 
   @override
