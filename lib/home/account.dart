@@ -92,7 +92,7 @@ class _AccountState extends State<Account> {
                       size: 2.5.h,
                     ),
                     SizedBox(width: 3.w),
-                    text_widget("${userProvider.getUser!.fullname} ",
+                    textWidget("${userProvider.getUser!.fullname} ",
                         fontSize: 16.sp, fontWeight: FontWeight.w300)
                   ],
                 ),
@@ -113,7 +113,7 @@ class _AccountState extends State<Account> {
                       size: 2.5.h,
                     ),
                     SizedBox(width: 3.w),
-                    text_widget("${userProvider.getUser!.email} ",
+                    textWidget("${userProvider.getUser!.email} ",
                         fontSize: 16.sp, fontWeight: FontWeight.w300)
                   ],
                 ),
@@ -134,7 +134,7 @@ class _AccountState extends State<Account> {
                       size: 2.5.h,
                     ),
                     SizedBox(width: 3.w),
-                    text_widget("${userProvider.getUser!.age} years ",
+                    textWidget("${userProvider.getUser!.age} years ",
                         fontSize: 16.sp, fontWeight: FontWeight.w300)
                   ],
                 ),
@@ -155,7 +155,7 @@ class _AccountState extends State<Account> {
                       size: 2.5.h,
                     ),
                     SizedBox(width: 3.w),
-                    text_widget("${userProvider.getUser!.weight} kg ",
+                    textWidget("${userProvider.getUser!.weight} kg ",
                         fontSize: 16.sp, fontWeight: FontWeight.w300)
                   ],
                 ),
@@ -176,7 +176,7 @@ class _AccountState extends State<Account> {
                       size: 2.5.h,
                     ),
                     SizedBox(width: 3.w),
-                    text_widget("${userProvider.getUser!.height} cm ",
+                    textWidget("${userProvider.getUser!.height} cm ",
                         fontSize: 16.sp, fontWeight: FontWeight.w300)
                   ],
                 ),
@@ -214,7 +214,7 @@ class _AccountState extends State<Account> {
     );
   }
 
-  Widget text_widget(String text,
+  Widget textWidget(String text,
       {fontSize,
       color,
       fontWeight,

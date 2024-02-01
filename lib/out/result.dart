@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import 'package:robofit/home/home.dart';
 import 'package:robofit/utils/colors.dart';
 
 class Result extends StatefulWidget {
@@ -16,6 +18,16 @@ class _ResultState extends State<Result> {
     //     parseGeneratedPlan(widget.generatedPlan);
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 246, 246, 246),
+      appBar: AppBar(
+        leading: GestureDetector(
+            onTap: () {
+              Get.to(const Home());
+            },
+            child: Icon(
+              Icons.arrow_back,
+              size: 4.h,
+            )),
+      ),
       body: SizedBox(
         height: 100.h,
         child: Stack(
@@ -27,23 +39,21 @@ class _ResultState extends State<Result> {
               child: Container(
                 color: MyColors.newColor,
                 height: 25.h,
-                child: SafeArea(
-                  child: Column(
-                    children: [
-                      SizedBox(
-                        height: 2.h,
+                child: Column(
+                  children: [
+                    SizedBox(
+                      height: 2.h,
+                    ),
+                    const Text(
+                      "FITNESS PLAN",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: MyColors.textColor,
+                        fontSize: 28,
+                        fontWeight: FontWeight.bold,
                       ),
-                      const Text(
-                        "FITNESS PLAN",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: MyColors.textColor,
-                          fontSize: 28,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
             ),

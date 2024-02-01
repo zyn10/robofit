@@ -38,7 +38,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   get: ^4.6.6
   responsive_sizer: ^3.2.0
-  http: ^1.1.0
+  http: 
   animated_weight_picker: ^1.0.3
   firebase_core: ^2.24.2
   cloud_firestore: ^4.14.0
@@ -47,8 +47,7 @@ dependencies:
   provider: ^6.1.1
   intl: ^0.19.0
   image_picker: ^1.0.7
-  uuid: ^3.0.7
-  shared_preferences: ^2.0.20
+  uuid: 
   google_fonts: ^6.1.0
   flutter_easyloading: ^3.0.5
 
@@ -61,7 +60,7 @@ dev_dependencies:
   # activated in the `analysis_options.yaml` file located at the root of your
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
-  flutter_lints: ^2.0.0
+  flutter_lints: ^3.0.1
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

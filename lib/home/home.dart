@@ -65,24 +65,24 @@ class _HomeState extends State<Home> {
             label: '',
             backgroundColor: Colors.white,
           ),
-          BottomNavigationBarItem(
-              icon: Icon(
-                Icons.next_plan,
-                color: (_page == 1) ? MyColors.newColor : Colors.grey,
-              ),
-              label: '',
-              backgroundColor: Colors.white),
-          BottomNavigationBarItem(
-              icon: Icon(
-                Icons.add_circle,
-                color: (_page == 2) ? MyColors.newColor : Colors.grey,
-              ),
-              label: '',
-              backgroundColor: Colors.white),
+          // BottomNavigationBarItem(
+          //     icon: Icon(
+          //       Icons.next_plan,
+          //       color: (_page == 1) ? MyColors.newColor : Colors.grey,
+          //     ),
+          //     label: '',
+          //     backgroundColor: Colors.white),
+          // BottomNavigationBarItem(
+          //     icon: Icon(
+          //       Icons.add_circle,
+          //       color: (_page == 2) ? MyColors.newColor : Colors.grey,
+          //     ),
+          //     label: '',
+          //     backgroundColor: Colors.white),
           BottomNavigationBarItem(
             icon: Icon(
               Icons.person,
-              color: (_page == 5) ? MyColors.newColor : Colors.grey,
+              color: (_page == 1) ? MyColors.newColor : Colors.grey,
             ),
             label: '',
             backgroundColor: Colors.white,

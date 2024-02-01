@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "370469519081",
+    "firebase_url": "https://robofit-3fa35-default-rtdb.firebaseio.com",
+    "project_id": "robofit-3fa35",
+    "storage_bucket": "robofit-3fa35.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:370469519081:android:3aa7c866498a3e35ebfa78",
+        "android_client_info": {
+          "package_name": "com.example.robofit"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDY2OCSd7LYU0Xew8G9dRobaaa7DlTlENE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:robofit/utils/colors.dart';
+
+import '../home/home.dart';
 
 class Outputscreen extends StatefulWidget {
   final String generatedPlan;
@@ -19,6 +22,18 @@ class _OutputscreenState extends State<Outputscreen> {
 
     return Scaffold(
       backgroundColor: Colors.white,
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: MyColors.newColor,
+        leading: GestureDetector(
+            onTap: () {
+              Get.to(const Home());
+            },
+            child: Icon(
+              Icons.arrow_back,
+              size: 4.h,
+            )),
+      ),
       body: SizedBox(
         height: 100.h,
         child: Stack(

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import 'package:robofit/auth/forget_password.dart';
 import 'package:robofit/auth/signup.dart';
 import 'package:robofit/home/home.dart';
 import 'package:robofit/utils/colors.dart';

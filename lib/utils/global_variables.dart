@@ -10,7 +10,7 @@ const homeScreenItems = [
   // Account(),
   // StackScreen(),
   InputDetails(),
-  Account(),
-  Account(),
+  // Account(),
+  // Account(),
   Account(),
 ];

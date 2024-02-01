@@ -1,18 +1,31 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import 'package:get/get.dart';
+
 import 'package:robofit/home/home.dart';
 import 'package:robofit/provider/user_provider.dart';
 import 'package:robofit/splash.dart';
-import 'package:robofit/utils/colors.dart';
 
-Future<void> main() async {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  if (kIsWeb) {
+    await Firebase.initializeApp(
+      options: const FirebaseOptions(
+        apiKey: '',
+        appId: '',
+        messagingSenderId: '',
+        projectId: '',
+        storageBucket: '',
+      ),
+    );
+  } else {
+    await Firebase.initializeApp();
+  }
 
-  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
@@ -32,9 +45,6 @@ class MyApp extends StatelessWidget {
           child: GetMaterialApp(
             debugShowCheckedModeBanner: false,
             title: 'Robofit',
-            // theme: ThemeData.dark().copyWith(
-            //   scaffoldBackgroundColor: MyColors.newColor,
-            // ),
             home: StreamBuilder(
               stream: FirebaseAuth.instance.authStateChanges(),
               builder: (context, snapshot) {
@@ -49,7 +59,9 @@ class MyApp extends StatelessWidget {
                 }
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return const Center(
-                    child: CircularProgressIndicator(),
+                    child: CircularProgressIndicator(
+                      color: Colors.grey,
+                    ),
                   );
                 }
                 return const SplashScreen();
@@ -58,7 +70,6 @@ class MyApp extends StatelessWidget {
           ),
         );
       },
-      maxTabletWidth: 900,
     );
   }
 }
